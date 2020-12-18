@@ -73,7 +73,7 @@ export default function CreateSnippet() {
                     </Select>
                 </div>
                 <div style={{marginBottom: "10px"}}>
-                    <TextareaAutosize value={snippet} rowsMin="8" onChange={(e) => {
+                    <TextareaAutosize style={{width: "800px"}} value={snippet} rowsMin="8" onChange={(e) => {
                         resetErrorAndSaved();
                         setSnippet(e.target.value)
                     }} />

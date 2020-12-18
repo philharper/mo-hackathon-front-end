@@ -9,6 +9,7 @@ import Button from "@material-ui/core/Button";
 import {makeStyles} from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import Snippet from "./Snippet";
+import Card from "@material-ui/core/Card";
 
 const herokuBase = 'https://mo-hackathon.herokuapp.com/'
 
@@ -56,15 +57,6 @@ function App() {
           <Typography variant="h6" className={classes.title}>
             <a style={{color: "#FFF"}} href="/">Giblets</a>
           </Typography>
-            <Button>Create</Button>
-            <div style={{padding: "3px", border: "1px solid white"}}>
-                <TextField value={query} onChange={(e) => {
-                    setQuery(e.target.value)
-                }} />
-                <Button onClick={() => {
-                    doSearch(query);
-                }}>Search</Button>
-            </div>
         </Toolbar>
       </AppBar>
 
@@ -81,16 +73,32 @@ function App() {
             <CreateSnippet/>
         }
 
-        {searchResult && searchResult.length > 0 &&
-            <div style={{align: "left", textAlign: "left"}}>
-                <ul>
-                {searchResult.map(
-                    (result, index) => {
-                        return (<Snippet open={searchResult.length === 1} snippet={result} />)
-                    }
-                )}
-                </ul>
+        <Card style={{margin: "10px"}}>
+            <div style={{margin: "10px", textAlign: "left", padding: "3px", border: "1px solid white"}}>
+                <h1>Search for awesome code!</h1>
+                <TextField value={query} onChange={(e) => {
+                    setQuery(e.target.value)
+                }} />
+                <Button onClick={() => {
+                    doSearch(query);
+                }}>Search</Button>
             </div>
+        </Card>
+        {searchResult && searchResult.length > 0 &&
+        <Card style={{margin: "10px"}}>
+            <div style={{margin: "10px", textAlign: "left", padding: "3px", border: "1px solid white"}}>
+                <h1>Search results</h1>
+                <div style={{align: "left", textAlign: "left"}}>
+                    <ul>
+                        {searchResult.map(
+                            (result, index) => {
+                                return (<Snippet key={index} open={searchResult.length === 1} snippet={result}/>)
+                            }
+                        )}
+                    </ul>
+                </div>
+            </div>
+        </Card>
         }
     </div>
   );
