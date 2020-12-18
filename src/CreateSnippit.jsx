@@ -5,6 +5,8 @@ import Card from "@material-ui/core/Card";
 
 export default function CreateSnippit() {
 
+    const hirokubase = 'https://mo-hackathon.herokuapp.com/'
+
     const [title, setTitle] = useState("");
     const [snippit, setSnippit] = useState("");
     const [tags, setTags] = useState("");
