@@ -38,26 +38,26 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const doSearch = (query) => {
-    fetch(hirokubase + "/snippet?tagName=" + query, {method: 'GET'})
-        .then(res => res.json())
-        .then(
-            (result) => {
-                console.log(result);
-            },
-            (error) => {
-                console.error("ERROR CALLING API", error);
-            }
-        )
-}
-
 function App() {
 
   const [query, setQuery] = useState("");
-
+  const [searchResult, setSearchResult] = useState([]);
   const response = getHello();
-
   const classes = useStyles();
+
+    const doSearch = (query) => {
+        fetch(hirokubase + "/snippet?tagName=" + query, {method: 'GET'})
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    setSearchResult(result);
+                    console.log(result);
+                },
+                (error) => {
+                    console.error("ERROR CALLING API", error);
+                }
+            )
+    }
 
   return (
     <div className="App">
@@ -81,6 +81,20 @@ function App() {
       </AppBar>
 
       <CreateSnippet />
+
+        {searchResult && searchResult.length > 0 &&
+            <div>
+                <ul>
+                {searchResult.map(
+                    (result, index) => {
+                        return (<li key={index}>
+                            {result.title}
+                        </li>)
+                    }
+                )}
+                </ul>
+            </div>
+        }
       {response}
     </div>
   );
