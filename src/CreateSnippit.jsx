@@ -5,7 +5,7 @@ import Card from "@material-ui/core/Card";
 
 export default function CreateSnippit() {
 
-    const hirokubase = 'https://mo-hackathon.herokuapp.com/'
+    const snippitSaveUrl = 'https://mo-hackathon.herokuapp.com/snippit'
 
     const [title, setTitle] = useState("");
     const [snippit, setSnippit] = useState("");
@@ -13,7 +13,7 @@ export default function CreateSnippit() {
 
     const saveSnippit = () => {
         console.log(title, snippit, tags);
-        fetch(hirokubase, {
+        fetch(snippitSaveUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json;charset=UTF-8',
