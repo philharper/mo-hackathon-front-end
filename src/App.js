@@ -5,7 +5,7 @@ const hirokubase = 'https://mo-hackathon.herokuapp.com/'
 
 const getHello = () => {
   fetch(hirokubase, {method: 'GET'}).then(response => {
-    console.log(response);
+    console.log(response.body);
     return response;
   }).catch(error => {
     console.log(error);
