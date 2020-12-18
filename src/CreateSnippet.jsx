@@ -4,6 +4,7 @@ import {useState} from "react";
 import Card from "@material-ui/core/Card";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
+import {languages} from "./languages";
 
 export default function CreateSnippet() {
 
@@ -28,12 +29,13 @@ export default function CreateSnippet() {
             headers: {
                 'Content-Type': 'application/json;charset=UTF-8',
             },
-            body: JSON.stringify({title, value:snippet, tags})
+            body: JSON.stringify({title, value:snippet, tags, language})
         }).then(response => response.json())
             .then(result => {
                 setSnippet("");
                 setTitle("");
                 setTags("");
+                setLanguage("");
                 setSaved(true);
                 setError(false);
                 console.log(result)
@@ -60,11 +62,15 @@ export default function CreateSnippet() {
                     <Select
                         id="demo-simple-select"
                         value={language}
-                        onChange={() => {return ""}}
-                    >
-                        <MenuItem value={10}>Ten</MenuItem>
-                        <MenuItem value={20}>Twenty</MenuItem>
-                        <MenuItem value={30}>Thirty</MenuItem>
+                        onChange={(e) => {
+                            setLanguage(e.target.value)
+                        }}
+                    >{
+                        languages.map((language) => {
+                            return(<MenuItem value={language}>{language}</MenuItem>)
+                        })
+
+                    }
                     </Select>
                 </div>
                 <div style={{marginBottom: "10px"}}>

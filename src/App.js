@@ -90,7 +90,7 @@ function App() {
                     (result, index) => {
                         return (<li key={index}>
                             <h3>{result.title}</h3>
-                            <SyntaxHighlighter showLineNumbers language="javascript">
+                            <SyntaxHighlighter showLineNumbers language={result.language}>
                                 {result.value}
                             </SyntaxHighlighter>
                             <ul>
