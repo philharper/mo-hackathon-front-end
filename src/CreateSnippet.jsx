@@ -3,22 +3,22 @@ import {Button, TextField, TextareaAutosize} from "@material-ui/core";
 import {useState} from "react";
 import Card from "@material-ui/core/Card";
 
-export default function CreateSnippit() {
+export default function CreateSnippet() {
 
-    const snippitSaveUrl = 'https://mo-hackathon.herokuapp.com/snippit'
+    const snippetSaveUrl = 'https://mo-hackathon.herokuapp.com/snippet'
 
     const [title, setTitle] = useState("");
-    const [snippit, setSnippit] = useState("");
+    const [snippet, setSnippet] = useState("");
     const [tags, setTags] = useState("");
 
-    const saveSnippit = () => {
-        console.log(title, snippit, tags);
-        fetch(snippitSaveUrl, {
+    const saveSnippet = () => {
+        console.log(title, snippet, tags);
+        fetch(snippetSaveUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json;charset=UTF-8',
             },
-            body: JSON.stringify({title, value:snippit, tags})
+            body: JSON.stringify({title, value:snippet, tags})
         }).then(response => response.json())
             .then(result => console.log(result))
             .catch(err => console.log(err))
@@ -26,18 +26,18 @@ export default function CreateSnippit() {
 
     return(
         <>
-            <h1>Save a snippit and help the team!</h1>
+            <h1>Save a snippet and help the team!</h1>
             <Card>
                 <div>
                     <TextField value={title}  label='Title' onChange={(e) => setTitle(e.target.value) } />
                 </div>
                 <div>
-                    <TextareaAutosize value={snippit} rowsMin="8" onChange={(e) => setSnippit(e.target.value) } />
+                    <TextareaAutosize value={snippet} rowsMin="8" onChange={(e) => setSnippet(e.target.value) } />
                 </div>
                 <div>
                     <TextField value={tags}  label='Tags' onChange={(e) => setTags(e.target.value) } />
                 </div>
-                <Button onClick={saveSnippit}>Save</Button>
+                <Button onClick={saveSnippet}>Save</Button>
             </Card>
 
         </>
