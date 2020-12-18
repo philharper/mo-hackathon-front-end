@@ -2,12 +2,15 @@ import React from "react";
 import {Button, TextField, TextareaAutosize} from "@material-ui/core";
 import {useState} from "react";
 import Card from "@material-ui/core/Card";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
 
 export default function CreateSnippet() {
 
     const snippetSaveUrl = 'https://mo-hackathon.herokuapp.com/snippet'
 
     const [title, setTitle] = useState("");
+    const [language, setLanguage] = useState("");
     const [snippet, setSnippet] = useState("");
     const [tags, setTags] = useState("");
     const [saved, setSaved] = useState(false);
@@ -52,6 +55,17 @@ export default function CreateSnippet() {
                         resetErrorAndSaved();
                         setTitle(e.target.value)}
                     } />
+                </div>
+                <div style={{marginBottom: "10px"}}>
+                    <Select
+                        id="demo-simple-select"
+                        value={language}
+                        onChange={() => {return ""}}
+                    >
+                        <MenuItem value={10}>Ten</MenuItem>
+                        <MenuItem value={20}>Twenty</MenuItem>
+                        <MenuItem value={30}>Thirty</MenuItem>
+                    </Select>
                 </div>
                 <div style={{marginBottom: "10px"}}>
                     <TextareaAutosize value={snippet} rowsMin="8" onChange={(e) => {

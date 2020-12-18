@@ -1,5 +1,5 @@
 import './App.css';
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import CreateSnippet from './CreateSnippet';
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -8,6 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import {makeStyles} from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
+import SyntaxHighlighter from 'react-syntax-highlighter';
 
 const hirokubase = 'https://mo-hackathon.herokuapp.com/'
 
@@ -83,12 +84,22 @@ function App() {
       <CreateSnippet />
 
         {searchResult && searchResult.length > 0 &&
-            <div>
+            <div style={{align: "left", textAlign: "left"}}>
                 <ul>
                 {searchResult.map(
                     (result, index) => {
                         return (<li key={index}>
-                            {result.title}
+                            <h3>{result.title}</h3>
+                            <SyntaxHighlighter showLineNumbers language="javascript">
+                                {result.value}
+                            </SyntaxHighlighter>
+                            <ul>
+                                {result.tags.map( (tag, index) => {
+                                    return(
+                                        <li key={index}>{tag}</li>
+                                    )
+                                })}
+                            </ul>
                         </li>)
                     }
                 )}
