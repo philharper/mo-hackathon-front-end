@@ -11,12 +11,16 @@ import {makeStyles} from "@material-ui/core";
 const hirokubase = 'https://mo-hackathon.herokuapp.com/'
 
 const getHello = () => {
-  fetch(hirokubase, {method: 'GET'}).then(response => {
-    console.log(response.json());
-    return response;
-  }).catch(error => {
-    console.log(error);
-  })
+  fetch(hirokubase, {method: 'GET'})
+      .then(res => res.json())
+      .then(
+          (result) => {
+            console.log(result);
+          },
+          (error) => {
+            console.error("ERROR CALLING API", error);
+          }
+      )
 }
 
 const useStyles = makeStyles((theme) => ({
