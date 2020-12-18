@@ -10,20 +10,7 @@ import {makeStyles} from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import Snippet from "./Snippet";
 
-const hirokubase = 'https://mo-hackathon.herokuapp.com/'
-
-const getHello = () => {
-  fetch(hirokubase, {method: 'GET'})
-      .then(res => res.json())
-      .then(
-          (result) => {
-            console.log(result);
-          },
-          (error) => {
-            console.error("ERROR CALLING API", error);
-          }
-      )
-}
+const herokuBase = 'https://mo-hackathon.herokuapp.com/'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,11 +31,10 @@ function App() {
   const [query, setQuery] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   const [showSave, setShowSave] = useState(false);
-  const response = getHello();
   const classes = useStyles();
 
     const doSearch = (query) => {
-        fetch(hirokubase + "/snippet?tagName=" + query, {method: 'GET'})
+        fetch(herokuBase + "/snippet?tagName=" + query, {method: 'GET'})
             .then(res => res.json())
             .then(
                 (result) => {
@@ -106,7 +92,6 @@ function App() {
                 </ul>
             </div>
         }
-      {response}
     </div>
   );
 }
