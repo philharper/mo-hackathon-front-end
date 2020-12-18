@@ -8,7 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import {makeStyles} from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
-import SyntaxHighlighter from 'react-syntax-highlighter';
+import Snippet from "./Snippet";
 
 const hirokubase = 'https://mo-hackathon.herokuapp.com/'
 
@@ -88,19 +88,7 @@ function App() {
                 <ul>
                 {searchResult.map(
                     (result, index) => {
-                        return (<li key={index}>
-                            <h3>{result.title}</h3>
-                            <SyntaxHighlighter showLineNumbers language={result.language}>
-                                {result.value}
-                            </SyntaxHighlighter>
-                            <ul>
-                                {result.tags.map( (tag, index) => {
-                                    return(
-                                        <li key={index}>{tag}</li>
-                                    )
-                                })}
-                            </ul>
-                        </li>)
+                        return (<Snippet snippet={result} />)
                     }
                 )}
                 </ul>
