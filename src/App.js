@@ -100,7 +100,7 @@ function App() {
                 <ul>
                 {searchResult.map(
                     (result, index) => {
-                        return (<Snippet snippet={result} />)
+                        return (<Snippet open={searchResult.length === 1} snippet={result} />)
                     }
                 )}
                 </ul>

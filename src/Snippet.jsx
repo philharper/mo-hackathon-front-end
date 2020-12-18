@@ -4,7 +4,7 @@ import { xonokai } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 const Snippet = (props) => {
 
-    const [showDetails, setShowDetails] = useState(false);
+    const [showDetails, setShowDetails] = useState(props.open);
 
     return (
         <>
