@@ -1,7 +1,21 @@
 import logo from './logo.svg';
 import './App.css';
 
+const hirokubase = 'https://mo-hackathon.herokuapp.com/'
+
+const getHello = () => {
+  fetch(hirokubase, {method: 'GET'}).then(response => {
+    console.log(response);
+    return response;
+  }).catch(error => {
+    console.log(error);
+  })
+}
+
 function App() {
+
+  const response = getHello();
+
   return (
     <div className="App">
       <header className="App-header">
@@ -18,6 +32,7 @@ function App() {
           Learn React
         </a>
       </header>
+      {response}
     </div>
   );
 }
