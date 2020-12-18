@@ -11,6 +11,15 @@ export default function CreateSnippit() {
 
     const saveSnippit = () => {
         console.log(title, snippit, tags);
+        fetch(hirokubase, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=UTF-8',
+            },
+            body: JSON.stringify({title, value:snippit, tags})
+        }).then(response => response.json())
+            .then(result => console.log(result))
+            .catch(err => console.log(err))
     }
 
     return(
