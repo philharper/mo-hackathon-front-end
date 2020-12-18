@@ -51,7 +51,6 @@ export default function CreateSnippet() {
         <>
 
             <Card style={{margin: "10px", padding: "10px", textAlign: "left"}}>
-                <h1>Save a snippet and help the team!</h1>
                 <div style={{marginBottom: "10px"}}>
                     <TextField value={title}  label='Title' onChange={(e) => {
                         resetErrorAndSaved();

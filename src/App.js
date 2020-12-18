@@ -43,6 +43,7 @@ function App() {
 
   const [query, setQuery] = useState("");
   const [searchResult, setSearchResult] = useState([]);
+  const [showSave, setShowSave] = useState(false);
   const response = getHello();
   const classes = useStyles();
 
@@ -81,7 +82,18 @@ function App() {
         </Toolbar>
       </AppBar>
 
-      <CreateSnippet />
+        <h1 style={{align: "left", textAlign: "left", margin: "10px"}}><a style={{cursor: "pointer"}} onClick={()=>setShowSave(!showSave)}>
+            {showSave &&
+             " - "
+            }
+            {!showSave &&
+            " + "
+            }
+            Save a snippet and help the team!
+        </a></h1>
+        {showSave &&
+            <CreateSnippet/>
+        }
 
         {searchResult && searchResult.length > 0 &&
             <div style={{align: "left", textAlign: "left"}}>
